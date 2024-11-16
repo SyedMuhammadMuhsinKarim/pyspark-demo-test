@@ -3,8 +3,6 @@ from pyspark.sql import functions as F
 from pyspark.sql.window import Window
 from contextlib import contextmanager
 
-
-
 class SparkDataProcessor:
     def __init__(self, app_name="Spark Example Program"):
         """

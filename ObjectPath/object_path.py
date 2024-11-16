@@ -125,3 +125,15 @@ class ObjectPathProcessor:
         months_by_id = self.reduce_by_id(self.parsed_keys)
         min_max_by_id = self.find_min_max_months(months_by_id)
         self.write_to_json(min_max_by_id, output_file)
+        
+if __name__ == "__main__":
+    object_paths = [
+        "s3://my-bucket/xxx/yyy/zzz/abc/id=123/month=2019-01-01/2019-01-19T10:31:18.818Z.gz",
+        "s3://my-bucket/xxx/yyy/zzz/abc/id=123/month=2019-02-01/2019-02-19T10:32:18.818Z.gz",
+        "s3://my-bucket/xxx/yyy/zzz/abc/id=333/month=2019-03-01/2019-06-19T10:33:18.818Z.gz",
+        "s3://my-bucket/xxx/yyy/zzz/def/id=123/month=2019-10-01/2019-10-19T10:34:18.818Z.gz",
+        "s3://my-bucket/xxx/yyy/zzz/def/id=333/month=2019-11-01/2019-12-19T10:35:18.818Z.gz",
+    ]
+
+    processor = ObjectPathProcessor()
+    processor.process_and_write(object_paths)

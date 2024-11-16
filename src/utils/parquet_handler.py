@@ -1,6 +1,6 @@
 import random
 import uuid
-from datetime import datetime, timedelta
+from datetime import timedelta
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
 
@@ -57,6 +57,7 @@ class DynamicParquetWriter:
         """
         df = self.spark.createDataFrame(data)
         df = df.withColumn("created_time", F.to_timestamp(F.col("created_time")))
+        
         print("Saving data to Parquet file...")
         df.write.mode("overwrite").parquet(output_path)
         print(f"Data saved to: {output_path}")
